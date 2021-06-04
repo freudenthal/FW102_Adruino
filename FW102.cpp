@@ -294,7 +294,7 @@ void FW102::CheckSerial()
 	{
 		if(_HardwareSerial->available() > 0)
 		{
-			while(_HardwareSerial->available() > 0)
+			while( (_HardwareSerial->available() > 0) && ExpectReply )
 			{
 				char Character = (char)_HardwareSerial->read();
 				switch (CurrentRecievingPart)
