@@ -448,6 +448,7 @@ void FW102::CheckReply()
 		else
 		{
 			CommandRetries = 0;
+			Busy = false;
 			Serial.println("Filter transmission failed.");
 		}
 	}
