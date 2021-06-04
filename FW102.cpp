@@ -294,17 +294,20 @@ void FW102::CheckSerial()
 	{
 		if(_HardwareSerial->available() > 0)
 		{
-			char Character = (char)_HardwareSerial->read();
-			switch (CurrentRecievingPart)
+			while(_HardwareSerial->available() > 0)
 			{
-				case RecievingPart::Echo:
-					ParseEcho(Character);
-					break;
-				case RecievingPart::Value:
-					ParseValue(Character);
-					break;
-				default:
-					break;
+				char Character = (char)_HardwareSerial->read();
+				switch (CurrentRecievingPart)
+				{
+					case RecievingPart::Echo:
+						ParseEcho(Character);
+						break;
+					case RecievingPart::Value:
+						ParseValue(Character);
+						break;
+					default:
+						break;
+				}
 			}
 		}
 		else if ( (micros() - TransmitTime) > TimeOut )
